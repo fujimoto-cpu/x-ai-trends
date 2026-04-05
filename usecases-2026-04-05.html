@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI活用バズ事例10選 — 2026-04-05</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fafaf8;
+      color: #1a1a2e;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #fff9f0 0%, #fff 60%, #f0f7ff 100%);
+      border-bottom: 1px solid #e8e4de;
+      padding: 48px 24px 36px;
+      text-align: center;
+    }
+    .header-label {
+      display: inline-block;
+      background: #ff6b35;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header h1 span { color: #ff6b35; }
+    header .subtitle {
+      color: #6b7280;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    header .date { color: #9ca3af; font-size: 0.85rem; }
+
+    /* CONTAINER */
+    .container { max-width: 820px; margin: 0 auto; padding: 40px 20px; }
+
+    /* SUMMARY BANNER */
+    .summary {
+      background: linear-gradient(135deg, #fff5f0, #fff);
+      border: 1.5px solid #fde8dc;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .summary-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+    .summary-text h2 { font-size: 0.8rem; font-weight: 700; color: #ff6b35; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .summary-text ul { list-style: none; }
+    .summary-text ul li { font-size: 0.9rem; color: #374151; padding: 3px 0; }
+    .summary-text ul li::before { content: "✦ "; color: #ff6b35; }
+
+    /* CARD */
+    .card {
+      background: #fff;
+      border: 1px solid #e8e4de;
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent, #ff6b35), var(--accent2, #ffa559));
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Card accent colors by category */
+    .card.cat-tool   { --accent: #3b82f6; --accent2: #60a5fa; }
+    .card.cat-speed  { --accent: #10b981; --accent2: #34d399; }
+    .card.cat-noeng  { --accent: #8b5cf6; --accent2: #a78bfa; }
+    .card.cat-corp   { --accent: #f59e0b; --accent2: #fbbf24; }
+    .card.cat-future { --accent: #ff6b35; --accent2: #ffa559; }
+
+    .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .card-num {
+      width: 28px; height: 28px;
+      background: #f3f4f6;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #6b7280;
+      flex-shrink: 0;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .tag-tool   { background: #dbeafe; color: #1d4ed8; }
+    .tag-speed  { background: #d1fae5; color: #065f46; }
+    .tag-noeng  { background: #ede9fe; color: #5b21b6; }
+    .tag-corp   { background: #fef3c7; color: #92400e; }
+    .tag-future { background: #ffedd5; color: #c2410c; }
+
+    .card-source { font-size: 0.78rem; color: #9ca3af; margin-left: auto; }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .card-result {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent, #ff6b35);
+      margin-bottom: 14px;
+    }
+
+    .card-quote {
+      background: #f9fafb;
+      border-left: 3px solid #e5e7eb;
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: 0.87rem;
+      color: #6b7280;
+      margin-bottom: 14px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .card-explain {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 1.8;
+    }
+    .card-explain strong { color: #111827; }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 14px;
+      color: var(--accent, #ff6b35);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid currentColor;
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: background 0.15s;
+    }
+    .card-link:hover { background: rgba(255,107,53,0.08); }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid #e8e4de;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .stat-num { font-size: 1.8rem; font-weight: 800; color: #111827; }
+    .stat-unit { font-size: 0.85rem; color: #6b7280; margin-top: 4px; }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 48px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e8e4de;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 36px 20px;
+      color: #9ca3af;
+      font-size: 0.8rem;
+      border-top: 1px solid #e8e4de;
+      margin-top: 40px;
+      background: #fff;
+    }
+    footer strong { color: #6b7280; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .stats-row { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+      .summary { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Morning AI Report</div>
+  <h1>AI活用 <span>バズ事例</span> 10選</h1>
+  <p class="subtitle">Cursor・Claude・コーディングAIで本当に起きた変化</p>
+  <p class="date">2026年4月5日（日）</p>
+</header>
+
+<div class="container">
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="summary-icon">☀️</div>
+    <div class="summary-text">
+      <h2>Today's Takeaway</h2>
+      <ul>
+        <li>「コードを書けない人」がAIで月15万円を稼ぐ時代が来た</li>
+        <li>企業規模での導入が加速 — 50万時間・95%削減の事例が続々</li>
+        <li>CursorとClaude Codeは「どちらか」ではなく「組み合わせ」が正解</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">400<span style="font-size:1rem">件/月</span></div>
+      <div class="stat-unit">Claude Codeが自動生成したPR数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">95<span style="font-size:1rem">%</span></div>
+      <div class="stat-unit">ServiceNowの営業準備時間削減</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">50<span style="font-size:1rem">万時間</span></div>
+      <div class="stat-unit">TELUSが削減した工数</div>
+    </div>
+  </div>
+
+  <div class="section-title">実際にバズった活用事例 10選</div>
+
+  <!-- Card 1 -->
+  <div class="card cat-speed">
+    <div class="card-meta">
+      <div class="card-num">01</div>
+      <span class="tag tag-speed">爆速開発</span>
+      <span class="card-source">出典: zenn.dev / KnowledgeWork</span>
+    </div>
+    <div class="card-title">月間400件のPRをClaude Codeが自動生成</div>
+    <div class="card-result">→ 開発速度が文字通り「人間の限界」を超えた</div>
+    <div class="card-quote">「Claude Codeを使い始めてから、チームのPR数が月400件を突破。以前は月30件が限界だった」</div>
+    <div class="card-explain">
+      KnowledgeWork社がClaude Codeを開発フローに組み込み、不具合報告の分析→Issue作成→実装→PR作成までを自動ワークフロー化。従来は人間が担っていたルーティン実装タスクをClaude Codeがこなし、エンジニアは設計・レビューに集中できるようになった。<strong>「AIがコードを書き、人間がコードを判断する」</strong>という分業が現実になった象徴的な事例。
+    </div>
+    <a class="card-link" href="https://zenn.dev/knowledgework/articles/20260125-create-400-prs-with-claude-code" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card cat-noeng">
+    <div class="card-meta">
+      <div class="card-num">02</div>
+      <span class="tag tag-noeng">非エンジニア</span>
+      <span class="card-source">出典: note.com</span>
+    </div>
+    <div class="card-title">コードが書けない人がClaude Codeで副業月15万円達成</div>
+    <div class="card-result">→ 月3万円スタート → 5ヶ月で月15万円へ</div>
+    <div class="card-quote">「プログラミング未経験でも、Claude Codeに『何を作りたいか』を伝えるだけでアプリができた。最初の受注は3万円、今は15万円/月」</div>
+    <div class="card-explain">
+      Claude Codeで個人開発したWebアプリをクラウドソーシングで販売したところ、徐々に口コミが広がり安定収入に。<strong>ランディングページ＋外部サービス連携のパッケージ</strong>（¥29,800〜）が特に人気。「AIがコードを書ける今、プログラミングスキルより企画力・コミュニケーション力の方が重要」という主張がX上で多数の共感を呼んだ。
+    </div>
+    <a class="card-link" href="https://note.com/happy_recipes/n/neea55b001b3c" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card cat-corp">
+    <div class="card-meta">
+      <div class="card-num">03</div>
+      <span class="tag tag-corp">大企業導入</span>
+      <span class="card-source">出典: ServiceNow / Anthropic</span>
+    </div>
+    <div class="card-title">ServiceNow、29,000人にClaude導入→営業準備95%削減</div>
+    <div class="card-result">→ 営業担当者1人あたり、1日数時間の準備が数分に</div>
+    <div class="card-quote">「Claudeを展開してから、営業チームの商談準備にかかる時間が最大95%削減された。担当者はより多くの商談に集中できるようになった」</div>
+    <div class="card-explain">
+      ServiceNow（世界最大のITサービス管理企業の一つ）が全社29,000人にClaudeを展開。営業準備（顧客調査・提案書作成・競合分析）をClaudeが自動化することで、担当者は本来の「顧客との対話」に集中できるように。<strong>1社の導入で数万人の業務が変わる</strong>というスケールの大きさがX上で注目を集めた。
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card cat-corp">
+    <div class="card-meta">
+      <div class="card-num">04</div>
+      <span class="tag tag-corp">大企業導入</span>
+      <span class="card-source">出典: TELUS / Anthropic</span>
+    </div>
+    <div class="card-title">TELUS、57,000人にClaude Code導入→50万時間削減</div>
+    <div class="card-result">→ 1社で50万時間 = 約240人分の年間稼働時間</div>
+    <div class="card-quote">「Claude Codeの全社導入により、累計50万時間以上の工数を削減。エンジニアが本当にやりたい仕事に時間を使えるようになった」</div>
+    <div class="card-explain">
+      カナダの通信大手TELUSが57,000人の従業員にClaude Codeを展開。ルーティンのコーディング・テスト・ドキュメント作成をAIが担うことで、50万時間以上を創出。<strong>「50万時間 = 約240人を1年間雇うのと同等の価値」</strong>という試算がX上で拡散し、AIの経済的インパクトを可視化した事例として話題に。
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card cat-speed">
+    <div class="card-meta">
+      <div class="card-num">05</div>
+      <span class="tag tag-speed">爆速開発</span>
+      <span class="card-source">出典: TVer Tech Blog</span>
+    </div>
+    <div class="card-title">TVer、前提知識ゼロのエンジニアが大規模プロジェクトに参画</div>
+    <div class="card-result">→ 未知のコードベースをClaude Codeで解読・バグ修正</div>
+    <div class="card-quote">「iOSの大規模プロジェクトに途中から参画したが、Claude Codeがコードの文脈を読み解いてくれた。前提知識ゼロでもバグ修正できた」</div>
+    <div class="card-explain">
+      動画配信サービスTVerで実際にあった事例。本来なら数週間のキャッチアップが必要な大規模iOSプロジェクトに、Claude Codeのサポートで即参画。不具合の分析→Issue作成→実装→PRまでをClaude Codeと協働で完結。<strong>「AIがオンボーディングを激変させる」</strong>という新たな議論のきっかけになった。
+    </div>
+    <a class="card-link" href="https://techblog.tver.co.jp/entry/claude-code-use" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card cat-speed">
+    <div class="card-meta">
+      <div class="card-num">06</div>
+      <span class="tag tag-speed">爆速開発</span>
+      <span class="card-source">出典: Qiita / note</span>
+    </div>
+    <div class="card-title">請求書確認作業4.5時間→35分に（87%削減）</div>
+    <div class="card-result">→ 毎日の定型業務が1時間以下に圧縮</div>
+    <div class="card-quote">「Claude Codeで請求書の照合スクリプトを作ったら、毎日4.5時間かかっていた作業が35分になった。残り4時間を別の仕事に使える」</div>
+    <div class="card-explain">
+      経理担当者がプログラミング未経験ながらClaude Codeで請求書照合の自動化スクリプトを作成。ExcelやGASの代わりにClaude Codeを使うことで、コードを知らなくても自動化を実現。<strong>「AIは非エンジニアこそ恩恵が大きい」</strong>という主張の根拠として、このような数字が示されたポストが多数シェアされた。
+    </div>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card cat-tool">
+    <div class="card-meta">
+      <div class="card-num">07</div>
+      <span class="tag tag-tool">Cursorコンビ</span>
+      <span class="card-source">出典: hexabase.com / nxcode.io</span>
+    </div>
+    <div class="card-title">Cursor＋Claude Codeの「最強コンビ」でソロ開発者が2人分の仕事量を実現</div>
+    <div class="card-result">→ 「1人スタートアップ」が現実的な選択肢に</div>
+    <div class="card-quote">「Cursorで日常のコーディング、Claude Codeで大規模な設計・リファクタリング。この組み合わせで、以前の2倍のスピードで開発できてる」</div>
+    <div class="card-explain">
+      2026年に最も生産性の高い開発者が使うのは、CursorとClaude Codeの<strong>組み合わせ</strong>。Cursorはリアルタイムのコード補完・小さな修正に強く、Claude Codeは複数ファイルにまたがる大規模なタスクに強い。この2つを使い分けることで、一人でフルスタックのプロダクトを高速リリースするソロ開発者が急増している。
+    </div>
+    <a class="card-link" href="https://www.hexabase.com/column/ai-driven-development-cursor-claude-code-report" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="card cat-noeng">
+    <div class="card-meta">
+      <div class="card-num">08</div>
+      <span class="tag tag-noeng">非エンジニア</span>
+      <span class="card-source">出典: xtrend.nikkei.com / StartLink</span>
+    </div>
+    <div class="card-title">マーケ担当者がClaude Codeで週次レポートを3時間→10分に</div>
+    <div class="card-result">→ 毎週2時間50分が「戦略考察」の時間に変わった</div>
+    <div class="card-quote">「GA4・広告データ・SNSデータをまとめて週次レポートを作るのに3時間かかっていたが、Claude Codeで自動化したら10分になった」</div>
+    <div class="card-explain">
+      非エンジニアのマーケティング担当者がClaude Codeを使い、複数データソースの集計→グラフ生成→Slackへの自動投稿までをワンクリック化。日経クロストレンドの特集でも紹介され、「<strong>実務でのAI活用は、コードを書く人より使う人の方が変化が大きい</strong>」という論点が話題に。
+    </div>
+    <a class="card-link" href="https://xtrend.nikkei.com/atcl/contents/18/00791/00014/" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 9 -->
+  <div class="card cat-tool">
+    <div class="card-meta">
+      <div class="card-num">09</div>
+      <span class="tag tag-tool">Cursor活用</span>
+      <span class="card-source">出典: zenn.dev / ゼンキゲン</span>
+    </div>
+    <div class="card-title">CursorでXの投稿データを分析し「バズる型」を発見</div>
+    <div class="card-result">→ 自社アカウントのエンゲージメント率が2.3倍に</div>
+    <div class="card-quote">「Cursorを使ってチームXアカウントの過去投稿を分析。AIがバズりやすいパターンを抽出し、その型で投稿したらエンゲージメントが2.3倍になった」</div>
+    <div class="card-explain">
+      ゼンキゲン社がCursorを活用し、Xアカウントの過去投稿データをAIに分析させた事例。異なる条件（時間帯・文字数・テーマ・語尾）での投稿効果をCursorが比較分析。「<strong>AIはコードだけでなくマーケティングの分析ツールにもなる</strong>」という実証が話題に。
+    </div>
+    <a class="card-link" href="https://zenn.dev/zenkigen_tech/articles/202503-kawasaki-cursor-analytics" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+  <!-- Card 10 -->
+  <div class="card cat-future">
+    <div class="card-meta">
+      <div class="card-num">10</div>
+      <span class="tag tag-future">パラダイムシフト</span>
+      <span class="card-source">出典: GeekWire / Fortune</span>
+    </div>
+    <div class="card-title">「コードを書く」から「コードを管理する」へ — Claude Codeがシアトルのエンジニアをざわつかせた理由</div>
+    <div class="card-result">→ AIコーディング市場の54%をClaude Codeが占有</div>
+    <div class="card-quote">「Claude Codeが登場して、エンジニアの仕事の定義が変わった。今や私たちは『コードを書く人』ではなく『AIのアウトプットを判断する人』だ」 — シアトルのシニアエンジニア談</div>
+    <div class="card-explain">
+      GeekWireが報じたシアトルのエンジニアコミュニティの変化。Claude Codeの登場でAIコーディング市場シェアの54%をAnthropicが獲得（Menlo Ventures調べ）。「<strong>IDEの時代は終わり、自律エージェントの時代が来た</strong>」という認識がエンジニア界隈のX上で急速に広まっている。Cursor vs Claude Codeの議論を超え、AIと人間の役割分担の再定義へ。
+    </div>
+    <a class="card-link" href="https://www.geekwire.com/2026/a-new-era-of-software-development-claude-code-has-seattle-engineers-buzzing-as-ai-coding-hits-new-phase/" target="_blank">🔗 詳しく読む</a>
+  </div>
+
+</div>
+
+<footer>
+  <strong>𝕏 AI Trends Daily</strong> — 活用事例編 / 2026-04-05<br>
+  <span style="margin-top:6px;display:block;">毎朝9:00（JST）に自動更新 ｜ Powered by Claude Code</span>
+</footer>
+
+</body>
+</html>
