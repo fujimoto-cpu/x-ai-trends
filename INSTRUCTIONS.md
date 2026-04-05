@@ -194,9 +194,9 @@ Body must include:
 - Table of Coding AI Use Cases (5 rows): title, @handle, summary
 - HTML report URL
 
-### Step 2-7: Slack DM (every day, any DOW)
+### Step 2-7: Slack Personal DM only (every day, any DOW — do NOT send to #general)
 
-Send to user ID `U034EFSD81G` via slack_send_message:
+Send to user ID `U034EFSD81G` via slack_send_message. Do not send to any channel.
 
 ```
 𝕏 *X AI Trends Report* (DATE)
